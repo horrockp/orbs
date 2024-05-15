@@ -2,7 +2,7 @@
 # Orbs Tech Test
 
 
-This Terraform script provisions and manages a simple nginx web server running on an AWS EC2 instance. It includes a VPC, subnets, a NAT Gateway, security groups, Classic Load Balancer and an EC2 instance running Docker with a nginx web server.
+This Terraform script provisions and manages a simple Nginx web server running on an AWS EC2 instance. It includes a VPC, subnets, a NAT Gateway, security groups, Classic Load Balancer and an EC2 instance running Docker with a Nginx web server.
 
 ## Installation
 
@@ -58,9 +58,11 @@ This will trigger a docker container to run tfsec and tflint.
 
 ## Testing the application
 
-The application maybe take upto 20 seconds afther the installation completes. This is due to the install scrpipt checking for external connectivity before it installs Docker and Ngnix webserver.
+The application maybe take upto 20 seconds to respond afher the installation completes. This is due to the install scrpipt checking for external connectivity before it installs Docker and Nginx webserver.
 
-To test the application, hit the LB dns name provided as a TF output in the browser
+To test the application, hit the LB dns name provided as a TF output.
+
+This should repond with the vanilla Nginx root home page.
 
 ```
 
