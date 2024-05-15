@@ -70,6 +70,7 @@ alb_dns_name = "web-elb-<account_id>.eu-west-2.elb.amazonaws.com"
 
 ## Architecture
 
+![alt text](images/orbs.jps)
 
 ## Design Decisions 
 
