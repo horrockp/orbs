@@ -58,7 +58,7 @@ This will trigger a docker container to run tfsec and tflint.
 
 ## Testing the application
 
-The application maybe take upto 30 seconds to respond afher the installation completes. This is due to the install scrpipt checking for external connectivity before it installs Docker and Nginx webserver. The healthcheck on the loadbalancer then need to updated the status.
+The application maybe take upto 30 seconds to respond afher the installation completes. This is due to the install scrpipt checking for external connectivity before it installs Docker and Nginx webserver. The healthcheck on the loadbalancer then needs to updated the status.
 
 To test the application, hit the LB dns name provided as a TF output.
 
