@@ -1,3 +1,4 @@
+# Security Group for EC2 Instances
 resource "aws_security_group" "ec2" {
   vpc_id = aws_vpc.main.id
 
@@ -23,7 +24,7 @@ resource "aws_security_group" "ec2" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [aws_vpc.main.cidr_block]
+    cidr_blocks = ["0.0.0.0/0"] # This should be behind a firewall. Required to access external Linux packages (Docker). An alternative would be to use the S3 VPC endpoint pull packages from AWS. This could then be locked to the VPC cidr.
     description     = "Allow all traffic to the load balancer"
   }
    tags = {
@@ -31,6 +32,7 @@ resource "aws_security_group" "ec2" {
   }
 }
 
+# Security Group for Load Balancer
 resource "aws_security_group" "lb" {
   vpc_id = aws_vpc.main.id
 
@@ -38,7 +40,7 @@ resource "aws_security_group" "lb" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # This shold be locked down to IP or behind a WAF if public
+    cidr_blocks = ["0.0.0.0/0"] # If Production, this shold be locked down to an IP range  or behind a WAF if open to the public 
     description     = "Allow port 80"
   }
 
@@ -54,6 +56,7 @@ resource "aws_security_group" "lb" {
   }
 }
 
+# Security Group for Endpoints
 resource "aws_security_group" "endpoint" {
   vpc_id = aws_vpc.main.id
 
