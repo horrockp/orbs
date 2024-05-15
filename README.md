@@ -70,10 +70,6 @@ alb_dns_name = "web-elb-<account_id>.eu-west-2.elb.amazonaws.com"
 
 ```
 
-## Architecture
-
-![Architecture Image](images/orbs.jpg)
-
 ## Design Decisions 
 
    * AWS Region: Chosen eu-west-2 for this example.
