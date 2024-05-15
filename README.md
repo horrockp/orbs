@@ -6,6 +6,8 @@ This Terraform script provisions and manages a simple nginx web server running o
 
 ## Installation
 
+Please make sure Docker is installed on your local machine
+
 clone the git repository
 
 ```
@@ -74,32 +76,37 @@ alb_dns_name = "web-elb-<account_id>.eu-west-2.elb.amazonaws.com"
 
 ## Design Decisions 
 
-    AWS Region: Chosen eu-west-2 for this example.
+   * AWS Region: Chosen eu-west-2 for this example.
 
-    AMI: Used Amazon Linux 2 AMI for the EC2 instance.
+   * AMI: Used Amazon Linux 2 AMI for the EC2 instance.
 
-    Instance Type: Selected t2.micro for cost efficiency during testing and development.
+   * Instance Type: Selected t2.micro for cost efficiency during testing and development.
 
-    Subnets: Configured 1 public and 1 private subnet for the purposes of this exercise.
+   * Subnets: Configured 1 public and 1 private subnet for the purposes of this exercise.
 
-    NAT Gateway: Used 1 NAT Gateway with a secondary IP for scalability.
+   * NAT Gateway: Used 1 NAT Gateway with a secondary IP for scalability.
 
-    Load Balancer: As we only have 1 public subnet, a Classic Load Balancer is used. (ALB and NLB require a minimum 
+   * Load Balancer: As we only have 1 public subnet, a Classic Load Balancer is used. (ALB and NLB require a minimum 
     of 2 subnets).
 
-    LB Ingress is open to the all for the purposes of this exercise. However, for a production environment this 
+   * LB Ingress is open to the all for the purposes of this exercise. However, for a production environment this 
     should be either locked down to a known cidr range or be placed behind a firewall/WAF.
 
-    EC2 Ingress only allows port 80 for http traffic and 443 for session manger console access to the EC2 instance. For Egress, i've allowed all traffic out for installation of the docker and nginx packages. 
+   * EC2 Ingress only allows port 80 for http traffic and 443 for session manger console access to the EC2 instance. For Egress, i've allowed all traffic out for installation of the docker and nginx packages. 
 
 
 ## Improvments
 
    Running a tfsec scan hightlights some critical security risks. 
 
-    - Prevent EC2 egress to 0.0.0./0. Locking this down should be a priority in non lab/sandbox environments. There are solutions available such as an S3 VPCEndpoint which allows you to download yum packages from AWS directly. This does not require internet access and    uses Private Link allowing you to lock down the cidr range. If this needs to be open, then a firewall should be used to restict external access.
-    - Encryption - EC2 EBC volumes should be encrypted to prevent loss of data. This comes with associated costs but is AWS standard best proactice.
-    - HTTP protocol should not be used where possiile and a TLS public certiciate should be used. This could have cost implications.
+   * Prevent EC2 egress to 0.0.0./0. Locking this down should be a priority in non lab/sandbox environments. There 
+   are solutions available such as an S3 VPCEndpoint which allows you to download yum packages from AWS directly. 
+   This does not require internet access and    uses Private Link allowing you to lock down the cidr range. If this 
+   needs to be open, then a firewall should be used to restict external access.
+   * Encryption - EC2 EBC volumes should be encrypted to prevent loss of data. This comes with associated costs but 
+   is AWS standard best proactice.
+   * HTTP protocol should not be used where possiile and a TLS public certiciate should be used. This could have 
+   cost implications.
 
 
 ## License
