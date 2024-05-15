@@ -103,6 +103,7 @@ alb_dns_name = "web-elb-<account_id>.eu-west-2.elb.amazonaws.com"
    is AWS standard best proactice.
    * HTTP protocol should not be used where possiile and a TLS public certiciate should be used. This could have 
    cost implications.
+   * A production environment would have an additonal AZ with public and private subnets to provide additional resillency. An autoscaling group for the EC2 instance would also be recommended.
 
 
 ## License
