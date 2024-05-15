@@ -11,7 +11,7 @@ Please make sure Docker is installed on your local machine
 clone the git repository
 
 ```
-git clone 
+git clone https://github.com/horrockp/orbs.git
 ```
 
 set your AWS credentials
